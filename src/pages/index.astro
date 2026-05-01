@@ -1,11 +1,277 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import marblism from '../assets/marblism.webp';
 ---
 
 <Layout>
-	<Welcome />
+	<div id="page">
+		<header id="nav">
+			<img src={marblism.src} alt="Marblism" id="logo" />
+			<a href="#apply" class="nav-cta">Become an affiliate</a>
+		</header>
+
+		<main>
+			<section id="hero">
+				<p class="eyebrow">Affiliate Program</p>
+				<h1>Earn by recommending<br />the apps people actually ship.</h1>
+				<p class="sub">
+					Marblism turns ideas into production-ready apps in minutes. Refer customers,
+					earn recurring commissions, and grow alongside a platform your audience will trust.
+				</p>
+				<a href="#apply" class="btn-primary">Apply now — it's free</a>
+			</section>
+
+			<section id="benefits">
+				<div class="card">
+					<span class="icon">&#9654;</span>
+					<h3>Recurring commissions</h3>
+					<p>Earn a percentage of every subscription your referrals generate — for as long as they stay active.</p>
+				</div>
+				<div class="card">
+					<span class="icon">&#9636;</span>
+					<h3>Real-time dashboard</h3>
+					<p>Track clicks, sign-ups, and payouts in one clean dashboard. No spreadsheets, no guesswork.</p>
+				</div>
+				<div class="card">
+					<span class="icon">&#9670;</span>
+					<h3>Ready-made assets</h3>
+					<p>Launch fast with pre-built banners, copy, and demo links — everything you need to start converting today.</p>
+				</div>
+				<div class="card">
+					<span class="icon">&#9642;</span>
+					<h3>Dedicated support</h3>
+					<p>A partner success team you can actually reach. We want you to win, so we show up when it matters.</p>
+				</div>
+			</section>
+
+			<section id="apply">
+				<h2>Ready to partner with Marblism?</h2>
+				<p class="apply-sub">Fill out a short form and our team will get back to you within one business day.</p>
+				<a href="mailto:affiliates@marblism.com" class="btn-primary">Get started</a>
+			</section>
+		</main>
+
+		<footer id="footer">
+			<p>&copy; {new Date().getFullYear()} Marblism. All rights reserved.</p>
+		</footer>
+	</div>
 </Layout>
+
+<style>
+	:root {
+		--bg: #0c0c14;
+		--surface: #14141f;
+		--accent: #5b5ef4;
+		--accent-hover: #4f46e5;
+		--border: rgba(255, 255, 255, 0.08);
+		--text: #f1f5f9;
+		--text-secondary: #94a3b8;
+		--font: Inter, Roboto, 'Helvetica Neue', Arial, sans-serif;
+	}
+
+	:global(html, body) {
+		margin: 0;
+		padding: 0;
+		background: var(--bg);
+		color: var(--text);
+		font-family: var(--font);
+	}
+
+	#page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Nav */
+	#nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 20px 48px;
+		border-bottom: 1px solid var(--border);
+	}
+
+	#logo {
+		height: 28px;
+		width: auto;
+	}
+
+	.nav-cta {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text);
+		text-decoration: none;
+		padding: 8px 18px;
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		transition: border-color 0.2s, color 0.2s;
+	}
+
+	.nav-cta:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	/* Hero */
+	main {
+		flex: 1;
+	}
+
+	#hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 96px 24px 80px;
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	.eyebrow {
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin: 0 0 20px;
+	}
+
+	h1 {
+		font-size: clamp(32px, 5vw, 52px);
+		font-weight: 700;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		margin: 0 0 24px;
+		color: var(--text);
+	}
+
+	.sub {
+		font-size: 18px;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		margin: 0 0 40px;
+		max-width: 580px;
+	}
+
+	.btn-primary {
+		display: inline-block;
+		padding: 14px 32px;
+		background: var(--accent);
+		color: #fff;
+		font-size: 15px;
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: 10px;
+		transition: background 0.2s, transform 0.15s;
+	}
+
+	.btn-primary:hover {
+		background: var(--accent-hover);
+		transform: translateY(-1px);
+	}
+
+	/* Benefits */
+	#benefits {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1px;
+		background: var(--border);
+		border-top: 1px solid var(--border);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.card {
+		background: var(--bg);
+		padding: 40px 36px;
+		transition: background 0.2s;
+	}
+
+	.card:hover {
+		background: var(--surface);
+	}
+
+	.icon {
+		display: block;
+		font-size: 18px;
+		color: var(--accent);
+		margin-bottom: 16px;
+	}
+
+	.card h3 {
+		font-size: 17px;
+		font-weight: 600;
+		color: var(--text);
+		margin: 0 0 10px;
+	}
+
+	.card p {
+		font-size: 15px;
+		line-height: 1.65;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	/* Apply CTA */
+	#apply {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 96px 24px;
+	}
+
+	#apply h2 {
+		font-size: clamp(24px, 3.5vw, 36px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		margin: 0 0 16px;
+		color: var(--text);
+	}
+
+	.apply-sub {
+		font-size: 16px;
+		color: var(--text-secondary);
+		margin: 0 0 36px;
+	}
+
+	/* Footer */
+	#footer {
+		padding: 24px 48px;
+		border-top: 1px solid var(--border);
+		text-align: center;
+	}
+
+	#footer p {
+		font-size: 13px;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	/* Responsive */
+	@media (max-width: 640px) {
+		#nav {
+			padding: 16px 20px;
+		}
+
+		#hero {
+			padding: 64px 20px 56px;
+		}
+
+		.sub {
+			font-size: 16px;
+		}
+
+		.card {
+			padding: 28px 24px;
+		}
+
+		#apply {
+			padding: 64px 20px;
+		}
+
+		#footer {
+			padding: 20px;
+		}
+	}
+</style>
