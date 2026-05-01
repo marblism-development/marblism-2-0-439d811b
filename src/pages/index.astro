@@ -6,8 +6,11 @@ import marblism from '../assets/marblism.webp';
 <Layout>
 	<div id="page">
 		<header id="nav">
-			<img src={marblism.src} alt="Marblism" id="logo" />
-			<a href="#apply" class="nav-cta">Become an affiliate</a>
+			<a href="/"><img src={marblism.src} alt="Marblism" id="logo" /></a>
+			<nav class="nav-links">
+				<a href="/contact" class="nav-link">Contact</a>
+				<a href="#apply" class="nav-cta">Become an affiliate</a>
+			</nav>
 		</header>
 
 		<main>
@@ -52,7 +55,7 @@ import marblism from '../assets/marblism.webp';
 		</main>
 
 		<footer id="footer">
-			<p>&copy; {new Date().getFullYear()} Marblism. All rights reserved.</p>
+			<p>&copy; {new Date().getFullYear()} Marblism. All rights reserved. &middot; <a href="/contact" class="footer-link">Contact</a></p>
 		</footer>
 	</div>
 </Layout>
@@ -95,6 +98,25 @@ import marblism from '../assets/marblism.webp';
 	#logo {
 		height: 28px;
 		width: auto;
+	}
+
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.nav-link {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text-secondary);
+		text-decoration: none;
+		padding: 8px 14px;
+		transition: color 0.2s;
+	}
+
+	.nav-link:hover {
+		color: var(--text);
 	}
 
 	.nav-cta {
@@ -246,6 +268,16 @@ import marblism from '../assets/marblism.webp';
 		font-size: 13px;
 		color: var(--text-secondary);
 		margin: 0;
+	}
+
+	.footer-link {
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	.footer-link:hover {
+		color: var(--text);
 	}
 
 	/* Responsive */

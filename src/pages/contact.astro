@@ -1,0 +1,348 @@
+---
+import Layout from '../layouts/Layout.astro';
+import marblism from '../assets/marblism.webp';
+---
+
+<Layout>
+	<div id="page">
+		<header id="nav">
+			<a href="/"><img src={marblism.src} alt="Marblism" id="logo" /></a>
+			<nav class="nav-links">
+				<a href="/contact" class="nav-link nav-link--active">Contact</a>
+				<a href="/#apply" class="nav-cta">Become an affiliate</a>
+			</nav>
+		</header>
+
+		<main>
+			<section id="contact-hero">
+				<p class="eyebrow">Get in touch</p>
+				<h1>Contact</h1>
+				<p class="sub">Affiliates — reach out and we'll get back to you fast.</p>
+			</section>
+
+			<section id="form-section">
+				<form id="contact-form" novalidate>
+					<div class="field">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" placeholder="Your name" required />
+					</div>
+					<div class="field">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" placeholder="you@example.com" required />
+					</div>
+					<div class="field">
+						<label for="channel">Company / Channel <span class="optional">(optional)</span></label>
+						<input type="text" id="channel" name="channel" placeholder="Your company or channel name" />
+					</div>
+					<div class="field">
+						<label for="message">Message</label>
+						<textarea id="message" name="message" placeholder="What's on your mind?" rows="5" required></textarea>
+					</div>
+					<button type="submit" class="btn-primary">Send message</button>
+				</form>
+
+				<div id="form-success" hidden>
+					<p class="success-text">Message sent — we'll be in touch soon.</p>
+				</div>
+
+				<p class="fallback-email">
+					Prefer email? Reach us at <a href="mailto:hello@marblism.com">hello@marblism.com</a>
+				</p>
+			</section>
+		</main>
+
+		<footer id="footer">
+			<p>&copy; {new Date().getFullYear()} Marblism. All rights reserved. &middot; <a href="/contact" class="footer-link">Contact</a></p>
+		</footer>
+	</div>
+</Layout>
+
+<script>
+	const form = document.getElementById('contact-form') as HTMLFormElement;
+	const success = document.getElementById('form-success') as HTMLElement;
+
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+		if (!form.checkValidity()) {
+			form.reportValidity();
+			return;
+		}
+		form.hidden = true;
+		success.hidden = false;
+	});
+</script>
+
+<style>
+	:root {
+		--bg: #0c0c14;
+		--surface: #14141f;
+		--accent: #5b5ef4;
+		--accent-hover: #4f46e5;
+		--border: rgba(255, 255, 255, 0.08);
+		--text: #f1f5f9;
+		--text-secondary: #94a3b8;
+		--font: Inter, Roboto, 'Helvetica Neue', Arial, sans-serif;
+	}
+
+	:global(html, body) {
+		margin: 0;
+		padding: 0;
+		background: var(--bg);
+		color: var(--text);
+		font-family: var(--font);
+	}
+
+	#page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Nav */
+	#nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 20px 48px;
+		border-bottom: 1px solid var(--border);
+	}
+
+	#logo {
+		height: 28px;
+		width: auto;
+		display: block;
+	}
+
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.nav-link {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text-secondary);
+		text-decoration: none;
+		padding: 8px 14px;
+		transition: color 0.2s;
+	}
+
+	.nav-link:hover {
+		color: var(--text);
+	}
+
+	.nav-link--active {
+		color: var(--accent);
+	}
+
+	.nav-cta {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text);
+		text-decoration: none;
+		padding: 8px 18px;
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		transition: border-color 0.2s, color 0.2s;
+	}
+
+	.nav-cta:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	/* Contact hero */
+	main {
+		flex: 1;
+	}
+
+	#contact-hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 72px 24px 48px;
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	.eyebrow {
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin: 0 0 20px;
+	}
+
+	h1 {
+		font-size: clamp(32px, 5vw, 52px);
+		font-weight: 700;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		margin: 0 0 20px;
+		color: var(--text);
+	}
+
+	.sub {
+		font-size: 18px;
+		line-height: 1.7;
+		color: var(--text-secondary);
+		margin: 0;
+		max-width: 480px;
+	}
+
+	/* Form section */
+	#form-section {
+		max-width: 560px;
+		margin: 0 auto;
+		padding: 0 24px 96px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-bottom: 24px;
+	}
+
+	label {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text);
+	}
+
+	.optional {
+		font-weight: 400;
+		color: var(--text-secondary);
+	}
+
+	input,
+	textarea {
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		color: var(--text);
+		font-family: var(--font);
+		font-size: 15px;
+		padding: 12px 14px;
+		transition: border-color 0.2s;
+		outline: none;
+		resize: vertical;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	input::placeholder,
+	textarea::placeholder {
+		color: var(--text-secondary);
+		opacity: 0.6;
+	}
+
+	input:focus,
+	textarea:focus {
+		border-color: var(--accent);
+	}
+
+	input:invalid:not(:placeholder-shown),
+	textarea:invalid:not(:placeholder-shown) {
+		border-color: rgba(239, 68, 68, 0.6);
+	}
+
+	.btn-primary {
+		display: inline-block;
+		padding: 14px 32px;
+		background: var(--accent);
+		color: #fff;
+		font-size: 15px;
+		font-weight: 600;
+		border: none;
+		border-radius: 10px;
+		cursor: pointer;
+		transition: background 0.2s, transform 0.15s;
+		font-family: var(--font);
+		margin-top: 8px;
+	}
+
+	.btn-primary:hover {
+		background: var(--accent-hover);
+		transform: translateY(-1px);
+	}
+
+	/* Success state */
+	#form-success {
+		padding: 32px 0 8px;
+	}
+
+	.success-text {
+		font-size: 16px;
+		color: var(--text);
+		margin: 0;
+	}
+
+	/* Fallback email */
+	.fallback-email {
+		font-size: 14px;
+		color: var(--text-secondary);
+		margin: 32px 0 0;
+	}
+
+	.fallback-email a {
+		color: var(--accent);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	.fallback-email a:hover {
+		color: var(--accent-hover);
+	}
+
+	/* Footer */
+	#footer {
+		padding: 24px 48px;
+		border-top: 1px solid var(--border);
+		text-align: center;
+	}
+
+	#footer p {
+		font-size: 13px;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	.footer-link {
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	.footer-link:hover {
+		color: var(--text);
+	}
+
+	/* Responsive */
+	@media (max-width: 640px) {
+		#nav {
+			padding: 16px 20px;
+		}
+
+		#contact-hero {
+			padding: 56px 20px 36px;
+		}
+
+		.sub {
+			font-size: 16px;
+		}
+
+		#form-section {
+			padding: 0 20px 64px;
+		}
+
+		#footer {
+			padding: 20px;
+		}
+	}
+</style>
